@@ -14,7 +14,7 @@ function ComboboxValue({ className, placeholder, ...props }: ComboboxValueProps)
   return (
     <div
       className={cn(
-        "flex flex-1 items-center justify-start self-stretch rounded-md text-xs font-medium py-1 pr-1 pl-3",
+        "flex flex-1 items-center justify-start self-stretch rounded-lg text-sm font-medium py-1 pr-1 pl-3",
         className
       )}
       {...props}
