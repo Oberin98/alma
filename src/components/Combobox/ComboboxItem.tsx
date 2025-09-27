@@ -43,7 +43,7 @@ function ComboboxItem({
           value === valueState ? "opacity-100" : "opacity-0"
         )}
       >
-        <CheckIcon strokeWidth={2.5} className="size-3" />
+        <CheckIcon strokeWidth={2.5} className="size-4" />
       </span>
 
       {children}
