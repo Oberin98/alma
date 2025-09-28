@@ -14,7 +14,7 @@ export function useOpenState({
   const [openState, setOpenState] = useState(() => open ?? defaultOpen ?? false);
 
   useEffect(() => {
-    // Update local state when controlled value changes
+    // Update local value when controlled value changes
     if (typeof open !== "undefined") {
       setOpenState(open);
     }
@@ -22,7 +22,7 @@ export function useOpenState({
 
   const handleSetOpenState = useCallback(
     (nextOpen: boolean) => {
-      // If no controlled value is provided, update the local state
+      // If no controlled value is provided, update local value
       if (typeof open === "undefined") {
         setOpenState(nextOpen);
       }

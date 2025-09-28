@@ -1,4 +1,4 @@
-'use client'
+"use client";
 
 import { ChevronDownIcon, ChevronUpIcon } from "lucide-react";
 
@@ -20,6 +20,7 @@ function ComboboxTrigger({
       className={cn(
         "flex h-12 w-full min-w-0 cursor-pointer items-center justify-between rounded-lg border border-input bg-transparent text-sm font-medium transition-[color,box-shadow] outline-none disabled:pointer-events-none disabled:opacity-50",
         "focus-visible:border-ring focus-visible:ring-[3px] focus-visible:ring-ring/50",
+        "aria-invalid:border-destructive aria-invalid:ring-destructive/20",
         className
       )}
       {...props}
