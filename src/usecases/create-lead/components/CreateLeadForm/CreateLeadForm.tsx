@@ -5,6 +5,7 @@ import { memo } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import * as z from "zod";
+import { useRouter } from "next/navigation";
 
 import { Button } from "@/components/Button";
 import { Checkbox } from "@/components/Checkbox";
@@ -31,7 +32,6 @@ import {
 } from "@/components/Form";
 
 import { countries, visaTypes } from "../../mocks";
-import { FileInput } from "@/components/FileInput";
 
 const formSchema = z.object({
   firstName: z
@@ -76,6 +76,8 @@ const formSchema = z.object({
 });
 
 function CreateLeadForm() {
+  const router = useRouter();
+
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -92,8 +94,8 @@ function CreateLeadForm() {
     },
   });
 
-  const handleSubmit = form.handleSubmit((data) => {
-    console.log("__DATA__", data);
+  const handleSubmit = form.handleSubmit(() => {
+    router.push("/success");
   });
 
   return (
