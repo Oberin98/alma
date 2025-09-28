@@ -14,7 +14,7 @@ export function useValueState({
   const [valueState, setValueState] = useState(() => value ?? defaultValue ?? "");
 
   useEffect(() => {
-    // Update local state when controlled value changes
+    // Update local value when controlled value changes
     if (typeof value !== "undefined") {
       setValueState(value);
     }
@@ -22,7 +22,7 @@ export function useValueState({
 
   const handleSetValueState = useCallback(
     (nextValue: string) => {
-      // If no controlled value is provided, update the local state
+      // If no controlled value is provided, update local value
       if (typeof value === "undefined") {
         setValueState(nextValue);
       }

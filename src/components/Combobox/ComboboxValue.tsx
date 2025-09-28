@@ -1,4 +1,4 @@
-'use client'
+"use client";
 
 import { cn } from "@/lib/styles";
 
@@ -14,15 +14,19 @@ function ComboboxValue({ className, placeholder, ...props }: ComboboxValueProps)
   return (
     <div
       className={cn(
-        "flex flex-1 items-center justify-start self-stretch rounded-lg text-sm font-medium py-1 pr-1 pl-3",
+        "flex min-w-0 flex-1 items-center justify-start self-stretch rounded-lg py-1 pr-1 pl-3 text-sm font-medium",
         className
       )}
       {...props}
     >
-      {activeOption?.label}
+      {activeOption?.label && (
+        <span className="inline-block min-w-0 truncate">{activeOption?.label}</span>
+      )}
 
       {!activeOption?.label && placeholder && (
-        <span className="text-muted-foreground">{placeholder}</span>
+        <span className="inline-block min-w-0 truncate text-muted-foreground">
+          {placeholder}
+        </span>
       )}
     </div>
   );
