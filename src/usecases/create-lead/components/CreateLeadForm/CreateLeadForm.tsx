@@ -30,6 +30,7 @@ import {
   FormItem,
   FormMessage,
 } from "@/components/Form";
+import { FileInput } from "@/components/FileInput";
 
 import { countries, visaTypes } from "../../mocks";
 
@@ -69,6 +70,19 @@ const formSchema = z.object({
     .trim()
     .max(512, { error: "Description exceeds maximum length of 512 characters" }),
 
+  resume: z
+    .file({ error: "Resume is required" })
+    .max(5 * 1024 * 1024, { error: "File size must be less than 5MB" })
+    .mime(
+      [
+        "text/plain",
+        "application/pdf",
+        "application/msword",
+        "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+      ],
+      { error: "Supported file types are PDF, DOC, DOCX, TXT" }
+    ),
+
   ["visa-o-1"]: z.boolean(),
   ["visa-eb-a1"]: z.boolean(),
   ["visa-eb-2-niw"]: z.boolean(),
@@ -87,6 +101,7 @@ function CreateLeadForm() {
       citizenship: "",
       referenceLink: "",
       description: "",
+      resume: undefined,
       "visa-o-1": false,
       "visa-eb-a1": false,
       "visa-eb-2-niw": false,
@@ -115,7 +130,7 @@ function CreateLeadForm() {
           your goals.
         </p>
 
-        <fieldset className="mx-auto mb-8 flex w-[400px] flex-col gap-3">
+        <fieldset className="mx-auto mb-8 flex w-[400px] min-w-0 flex-col gap-3">
           <FormField
             name="firstName"
             control={form.control}
@@ -218,6 +233,26 @@ function CreateLeadForm() {
               );
             }}
           />
+
+          <FormField
+            name="resume"
+            control={form.control}
+            render={({ field }) => {
+              return (
+                <FormItem>
+                  <FormControl>
+                    <FileInput
+                      placeholder="Resume / CV"
+                      value={field.value ? [field.value] : []}
+                      onValueChange={([file]) => field.onChange(file)}
+                    />
+                  </FormControl>
+
+                  <FormMessage />
+                </FormItem>
+              );
+            }}
+          />
         </fieldset>
 
         <div className="mb-2 flex w-full items-center justify-center">
@@ -228,7 +263,7 @@ function CreateLeadForm() {
           Visa categories of interest?
         </h3>
 
-        <fieldset className="mx-auto mb-8 flex w-[400px] flex-col gap-3">
+        <fieldset className="mx-auto mb-8 flex w-[400px] min-w-0 flex-col gap-3">
           {visaTypes.map((visa) => (
             <FormField
               key={visa.value}
@@ -264,7 +299,7 @@ function CreateLeadForm() {
           How can we help you?
         </h3>
 
-        <fieldset className="mx-auto mb-10 w-[400px]">
+        <fieldset className="mx-auto mb-10 w-[400px] min-w-0">
           <FormField
             name="description"
             control={form.control}
@@ -286,7 +321,7 @@ function CreateLeadForm() {
           />
         </fieldset>
 
-        <div className="mx-auto w-[400px]">
+        <div className="mx-auto w-[400px] min-w-0">
           <Button type="submit" className="w-full">
             Submit
           </Button>
