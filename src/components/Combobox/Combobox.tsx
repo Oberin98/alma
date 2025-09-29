@@ -21,6 +21,9 @@ interface ComboboxProps {
   onValueChange?: (value: string) => void;
 }
 
+/* TODO:
+ * - extends combobox to support sm, md and lg sizes
+ */
 function Combobox({
   children,
   open,

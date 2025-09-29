@@ -2,6 +2,11 @@ import * as React from "react";
 
 import { cn } from "@/lib/styles";
 
+/* TODO:
+ * - extend input component to support icons
+ * - extends input to support sm, md and lg sizes
+ * - for input type search render "reset" button
+ */
 function Input({ className, type, ...props }: React.ComponentProps<"input">) {
   return (
     <input
