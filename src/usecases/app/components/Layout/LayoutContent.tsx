@@ -8,7 +8,7 @@ function LayoutContent({
   return (
     <main
       className={cn(
-        "flex min-h-screen w-full min-w-0 flex-1 flex-col p-7",
+        "flex min-h-screen w-full min-w-0 flex-1 flex-col px-7 py-13",
         className
       )}
       {...props}
